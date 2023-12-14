@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aluguel</title>
+    <style>
+        body{
+            font-family: Verdana, sans-serif;
+            text-align: center; /* Centraliza o que estiver dentrp do body*/
+            background-color: azure;
+        }
+
+        img{
+            width: 500px;
+        }
+
+        .fundo {
+            background-color: black;
+        }
+        
+        
+
+    </style>
+</head>
+<body>
+    <h1>Locaçao De Carros</h1> <!---->
+
+    <div class="fundo">
+        <h1>Supresa</h1>
+    </div>
+
+    <div id="cars">
+
+    </div>
+
+    <script>
+        
+        let cars = [
+            {name:"Astra", Image: "Astra01.jpg", rentedImage:"alugado.png"},// Name é objeto, Image é atributo
+            {name:"Honda Civic", Image: "HondaCivic.jpg", rentedImage:"alugado.png"},
+            {name:"Volkswagen", Image: "VolkswagenGolf01.jpg", rentedImage:"alugado.png"}
+        ];
+
+        let carsDiv = document.getElementById("cars")// pega a div cars
+
+        cars.forEach( function(car){ //o intuito de forEach é aplicar a funçao em cada elemento do "cars"
+            let carDiv = document.createElement("div"); //createElement cria uma Div dentro do Java
+            carDiv.className = 'car'; //nome da classe
+
+            let carName = document.createElement("h2"); //cria um titulo dentro do Java
+            carName.textContent = car.name;   //muda atributo, ou seja o nome de exibiçao, car.name seria o nome dos carros exibidos na let cars, sendo um h2
+            carDiv.appendChild(carName)  //ele bota o elemento dentro da Div chamada Car
+
+            let carImage = document.createElement("img");
+            carImage.src = car.Image; //muda o atributo
+            carDiv.appendChild(carImage);
+
+            let rentButton = document.createElement("button") //coloca uma funçao ao pressionar o botao
+            rentButton.textContent = "Alugar";
+            rentButton.onclick = function(){
+                this.parentNode.removeChild(this); //ira remover o botao ao ser clicado
+                carImage.src = car.rentedImage; //a imagem do carro vai mudar para alugado
+            } 
+            carDiv.appendChild(rentButton);
+            carsDiv.appendChild(carDiv); 
+
+        }
+
+        ) 
+    </script>
+    
+</body>
+</html>
